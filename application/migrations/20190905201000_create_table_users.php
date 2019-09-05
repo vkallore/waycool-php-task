@@ -28,31 +28,36 @@ class Migration_create_table_users extends CI_Migration {
 			],
 			'email' => [
 				'type' => 'VARCHAR(255)',
-				''
 			],
 			'password' => [
-				'type' => 'VARCHAR(64)',
+				'type' => 'VARCHAR(255)',
 			],
 			'fullname' => [
 				'type' => 'VARCHAR(100)',
 			],
+			'age' => [
+				'type' => 'TINYINT(2)',
+				'null' => true,
+			],
 			'gender' => [
 				'type' => 'VARCHAR(10)',
+				'null' => true,
 			],
 			'location_address' => [
 				'type' => 'TEXT',
+				'null' => true,
 			],
 			'location_lat' => [
 				'type' => 'VARCHAR(20)',
+				'null' => true,
 			],
 			'location_long' => [
 				'type' => 'VARCHAR(20)',
-			],
-			'gender' => [
-				'type' => 'VARCHAR(10)',
+				'null' => true,
 			],
 			'created_at' => [
 				'type' => 'DATETIME',
+				'null' => true,
 			],
 			'deleted_at' => [
 				'type' => 'DATETIME',
