@@ -50,6 +50,12 @@ server {
         fastcgi_param LOCAL_DB_PWD 'p@ssw0rd';
         fastcgi_param LOCAL_DB_NAME 'waycool';
         fastcgi_param DEV_ENVIRONMENT 'development';
+
+        fastcgi_param SMTP_HOST 'smtp.sendgrid.net';
+        fastcgi_param SMTP_USER 'MY_USER';
+        fastcgi_param SMTP_PASS 'MY_PASS';
+        fastcgi_param SMTP_PORT 587;
+        fastcgi_param EMAIL_FROM 'vaishak@kallore.in';
     }
 
     # deny access to .htaccess files, if Apache's document root
