@@ -1,11 +1,5 @@
 # waycool-php-task
 
-# Install Dependencies
-
-```
-$ comoser install --no-dev
-```
-
 # NGINX Configuration
 
 ```
