@@ -16,7 +16,13 @@ class Users_model extends MY_Model {
      */
     public static function find_user(array $fields_and_values) {
         self::$CI->db->select([
-                        'email', 'created_at', 'deleted_at', 'is_deleted'
+                        'id',
+                        'email',
+                        'userid',
+                        'password',
+                        'created_at',
+                        'deleted_at',
+                        'is_deleted',
                     ])
                  ->from(self::$table_name)
                  ->order_by('id', 'DESC');

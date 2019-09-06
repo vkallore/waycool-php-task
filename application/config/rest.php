@@ -203,8 +203,11 @@ $config['auth_library_function'] = '';
 // ---Uncomment list line for the wildard unit test
 // $config['auth_override_class_method_http']['wildcard_test_cases']['*']['options'] = 'basic';
 
-// Disable REST authentication for account creation
+// Disable REST authentication for
+// account creation
 $config['auth_override_class_method_http']['users']['index']['post'] = 'none';
+// account login
+$config['auth_override_class_method_http']['auth']['login']['post'] = 'none';
 
 
 /*

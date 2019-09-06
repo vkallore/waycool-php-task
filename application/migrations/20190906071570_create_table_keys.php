@@ -32,7 +32,7 @@ class Migration_create_table_keys extends CI_Migration {
                 'type' => 'TINYINT(1)',
                 'default' => 0,
             ],
-            'date_created' => [
+            'created_at' => [
                 'type' => 'DATETIME',
             ],
         );

@@ -47,7 +47,7 @@ class Users extends MY_Controller
         $prefix = strtoupper($email_first_char . $name_first_char);
         $userid = uniqid($prefix);
 
-        $random_password = random_password();
+        $random_password = random_string();
         $password_hash = password_hash($random_password, PASSWORD_BCRYPT, ['cost' => 12]);
 
         // Create a new user if email not found
