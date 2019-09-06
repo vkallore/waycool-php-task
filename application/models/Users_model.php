@@ -58,4 +58,23 @@ class Users_model extends MY_Model {
     public static function update($where, $data, $table_name = '') {
         return parent::update($where, $data, self::$table_name);
     }
+
+    /**
+     * List of deleted accounts
+     * @return array of objects
+     */
+    public static function deleted_accounts() {
+        self::$CI->db->select([
+                'userid',
+                'email',
+                'fullname',
+                'created_at',
+                'deleted_at',
+            ])
+            ->from(self::$table_name)
+            ->where('is_deleted', 1);
+        $query = self::$CI->db->get();
+        $result = $query->result_object();
+        return $result;
+    }
 }
