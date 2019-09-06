@@ -17,4 +17,13 @@ class Keys_model extends MY_Model {
     public static function create($data, $table_name = '') {
         return parent::create($data, self::$table_name);
     }
+
+    /**
+     * Delete record
+     * @param array $where - Where field & values
+     * @param string $table_name - Table name, empty by default
+     */
+    public static function delete($where, $table_name = '') {
+        return parent::delete($where, self::$table_name);
+    }
 }

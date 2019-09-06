@@ -24,8 +24,9 @@ $lang['text_rest_account_last_active'] = "We found that the account was active d
 $lang['text_rest_account_exists'] = 'An account with same email exists! Please try another.';
 $lang['text_rest_login_email_success'] = 'Login details have been sent your email';
 $lang['text_rest_login_email_failure'] = 'Error occurred while sending login details';
-$lang['text_rest_user_created'] = 'User created successfully';
-$lang['text_rest_user_updated'] = 'User upated successfully';
+$lang['text_rest_user_created'] = 'Account created successfully';
+$lang['text_rest_user_updated'] = 'Account upated successfully';
+$lang['text_rest_user_deleted'] = 'Account deleted successfully';
 // Auth
 $lang['text_rest_invalid_login'] = 'Invalid login. Please try again.';
 $lang['text_rest_invalid_credentials'] = 'Username/password do not match. Please try again.';

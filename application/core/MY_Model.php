@@ -41,6 +41,19 @@ class MY_Model extends CI_Model {
     }
 
     /**
+     * Delete record
+     * @param array $where - Where field & values
+     * @param string $table_name - Table name, empty by default
+     */
+    public static function delete($where, $table_name = '') {
+        $set_where = self::set_where_fields($where, $table_name);
+        if(!$set_where) {
+            return false;
+        }
+        return self::$CI->db->delete($table_name);
+    }
+
+    /**
      * Get table fields
      * @param string $table_name - Table name
      * @return array - array of fields
