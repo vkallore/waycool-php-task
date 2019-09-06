@@ -23,11 +23,16 @@ class Login_logs_model extends MY_Model {
      * Create record
      * @param array $data - Insert data
      * @param string $table_name - Table name, empty by default
+     * @return boolean - Success or not
      */
     public static function create($data, $table_name = '') {
         return parent::create($data, self::$table_name);
     }
 
+    /**
+     * Login log list by type
+     * @return array of objects
+     */
     public static function login_list() {
         // SELECT user_id, usr.email,  login_type, COUNT(login_type) as login_type_count,
         //   SUM(CASE WHEN login_type = 'Email' THEN 1 ELSE 0 END) AS email,
