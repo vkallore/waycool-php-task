@@ -69,8 +69,20 @@ class Users extends MY_Controller
             ], 500);
         }
 
-        // Send email
-        $sent_email = parent::send_email($email, 'TEST Email 😀', 'Testing 😀');
+        /**
+         * Send email right away using SMTP/API
+         * or
+         * can save it in DB to process via scheduler
+         */
+        // Load language files
+        $this->lang->load('email_content_lang', 'english');
+
+        $email_subject = $this->lang->line('registration_email_subject');
+        $email_content = $this->lang->line('registration_email_content');
+
+        // Sending password via email is a legacy thought. Ignoring for now.
+        $email_body = sprintf($email_content, $fullname, $userid, $random_password);
+        $sent_email = parent::send_email($email, $email_subject, $email_body);
 
         $email_sent_message = $sent_email
                                 ? 'Login details have been sent your email'

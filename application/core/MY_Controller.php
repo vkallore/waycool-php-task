@@ -33,12 +33,14 @@ class MY_Controller extends CI_Controller {
             'newline'   => "\r\n"
         ];
 
+        // May configure it in DB as well.
         $from_email = getenv('EMAIL_FROM');
 
         $this->email->initialize($config);
 
         $this->email->clear();
 
+        // May configure it in DB as well.
         $this->email->from($from_email, 'WayCool');
 
         // Array or string
