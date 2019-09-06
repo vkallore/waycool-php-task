@@ -34,3 +34,6 @@ $lang['text_rest_social_linked_success'] = 'Social profile linked successfully.'
 $lang['text_rest_invalid_login'] = 'Invalid login. Please try again.';
 $lang['text_rest_invalid_credentials'] = 'Username/password do not match. Please try again.';
 $lang['text_rest_login_success'] = 'Login successfull. You are being redirected...';
+// Admin
+$lang['text_rest_dash_invalid_request'] = 'Unauthorized request! Try again.';
+$lang['text_rest_no_records'] = 'No records found.';
