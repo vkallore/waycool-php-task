@@ -20,6 +20,9 @@ class Users extends MY_Controller
         $location_lat = $this->post('latitude');
         $location_long = $this->post('longitude');
 
+        // Validation
+        // TODO
+
         $recreate_confirm = $this->post('recreate_confirm');
 
         // Find user with same email ID
