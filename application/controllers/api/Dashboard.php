@@ -31,12 +31,12 @@ class Dashboard extends MY_Controller
 
         $this->_validate_admin();
 
-        $login_list = Login_logs_model::login_list();
+        $login_logs_by_type = Login_logs_model::login_logs_by_type();
 
         $response = [
-            'data' => $login_list
+            'data' => $login_logs_by_type
         ];
-        if(empty($login_list)) {
+        if(empty($login_logs_by_type)) {
             $response['message'] = lang('text_rest_no_records');
         }
         $this->response($response, 200);
@@ -54,6 +54,24 @@ class Dashboard extends MY_Controller
             'data' => $deleted_accounts
         ];
         if(empty($deleted_accounts)) {
+            $response['message'] = lang('text_rest_no_records');
+        }
+        $this->response($response, 200);
+    }
+
+    /**
+     * Users, their login actions
+     */
+    public function user_login_logs_get() {
+
+        $this->_validate_admin();
+
+        $login_logs = Login_logs_model::login_logs();
+
+        $response = [
+            'data' => $login_logs
+        ];
+        if(empty($login_logs)) {
             $response['message'] = lang('text_rest_no_records');
         }
         $this->response($response, 200);

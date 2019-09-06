@@ -33,7 +33,7 @@ class Login_logs_model extends MY_Model {
      * Login log list by type
      * @return array of objects
      */
-    public static function login_list() {
+    public static function login_logs_by_type() {
         // SELECT user_id, usr.email,  login_type, COUNT(login_type) as login_type_count,
         //   SUM(CASE WHEN login_type = 'Email' THEN 1 ELSE 0 END) AS email,
         //   SUM(CASE WHEN login_type = 'FB' THEN 1 ELSE 0 END) AS facebook,
@@ -54,6 +54,24 @@ class Login_logs_model extends MY_Model {
                             ->group_by([
                                 'user_id'
                             ])
+                            ->get();
+        return $query->result_object();
+    }
+
+    /**
+     * Login log list
+     * @return array of objects
+     */
+    public static function login_logs() {
+        $query = self::$CI->db->select([
+                                'user_id',
+                                'email AS email_id',
+                                'fullname',
+                                'login_type',
+                                'logs.created_at',
+                            ])
+                            ->from(self::$table_name . ' logs')
+                            ->join(Users_model::$table_name . ' usr ' , 'usr.id = logs.user_id AND usr.is_deleted = 0')
                             ->get();
         return $query->result_object();
     }
