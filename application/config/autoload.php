@@ -93,6 +93,7 @@ $autoload['drivers'] = array();
 */
 $autoload['helper'] = array(
     'custom_helper',
+    'language',
 );
 
 /*
@@ -139,4 +140,5 @@ $autoload['language'] = array();
 $autoload['model'] = array(
     'Users_model',
     'Keys_model',
+    'Login_logs_model',
 );

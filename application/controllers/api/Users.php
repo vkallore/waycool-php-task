@@ -29,15 +29,17 @@ class Users extends MY_Controller
 
         // Show last active period, if user with same email is deleted
         if(!empty($user) && $user->is_deleted == 1) {
+            $message = lang('text_rest_account_last_active');
+            $message = sprintf($message, $user->created_at, $user->deleted_at);
             // Do not process if not re-confirm
             if(empty($recreate_confirm)) {
                 $this->response([
-                    'message' => "We found that the account was active during {$user->created_at} - {$user->deleted_at}. Confirm to re-create the account.",
+                    'message' => $message,
                 ], 202); // Accepted, but not taken action
             }
         } else if (!empty($user)) {
             $this->response([
-                'message' => "An account with same email exists! Please try another.",
+                'message' => lang('text_rest_account_exists'),
             ], 403);
         }
 
@@ -64,8 +66,10 @@ class Users extends MY_Controller
         ]);
 
         if($user !== true) {
+            $message = lang('text_rest_error_while');
+            $message = sprintf($message, 'creating account');
             $this->response([
-                'message' => 'Error occurred while creating account! Please try again.',
+                'message' => $message,
             ], 500);
         }
 
@@ -85,11 +89,11 @@ class Users extends MY_Controller
         $sent_email = parent::send_email($email, $email_subject, $email_body);
 
         $email_sent_message = $sent_email
-                                ? 'Login details have been sent your email'
-                                : 'Error occurred while sending login details';
+                                ? lang('text_rest_login_email_success')
+                                : lang('text_rest_login_email_failure');
         // Response with 201
         $this->response([
-            'message' => "User created successfully. {$email_sent_message}."
+            'message' => lang('text_rest_user_created') . $email_sent_message,
         ], 201);
     }
 }

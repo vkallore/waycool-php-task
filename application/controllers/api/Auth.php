@@ -10,6 +10,9 @@ class Auth extends MY_Controller
         REST_Controller::__construct as private __resTraitConstruct;
     }
 
+    /**
+     * Login POST request
+     */
     public function login_post() {
         // Post data
         $userid = $this->post('username');
@@ -24,7 +27,7 @@ class Auth extends MY_Controller
         // Show last active period, if user with same email is deleted
         if(empty($user)) {
             $this->response([
-                'message' => "Invalid login. Please try again.",
+                'message' => lang('text_rest_invalid_login'),
             ], 400);
         }
 
@@ -32,27 +35,39 @@ class Auth extends MY_Controller
 
         if(!password_verify($password, $user_password)) {
             $this->response([
-                'message' => "Invalid credentials. Please try again.",
+                'message' => lang('text_rest_invalid_credentials'),
             ], 401);
         }
+
+        $user_id = $user->id;
 
         // Start transaction
         $this->db->trans_start();
 
-        // Log the email login
-        // TODO
+        // Log the login
+        $login_log = Login_logs_model::log($user_id);
+        if($login_log !== true) {
+            $message = lang('text_rest_error_while');
+            $message = sprintf($message, 'login');
+            $this->response([
+                'message' => $message,
+            ], 500);
+        }
 
-        // Create API Key - BASIC/No tie up with user at the moment
+        // Create API Key - BASIC
         $key = random_string(30);
         $key_created = Keys_model::create([
+            'user_id' => $user_id,
             'key' => $key,
             'level' => 1,
             'ignore_limits' => 0,
         ]);
 
         if($key_created !== true) {
+            $message = lang('text_rest_error_while');
+            $message = sprintf($message, 'login');
             $this->response([
-                'message' => 'Error occurred while login! Please try again.',
+                'message' => $message,
             ], 500);
         }
 
@@ -63,13 +78,17 @@ class Auth extends MY_Controller
             // Response with 200
             $this->response([
                 'api_key' => $key,
-                'message' => 'Login successfull.',
+                'message' => lang('text_rest_login_success'),
             ], 200);
         } else {
             // Response with 500
             $this->response([
-                'message' => 'Error occurred! Please try again.',
+                'message' => lang('text_rest_common_error'),
             ], 500);
         }
+    }
+
+    public function social_login_post() {
+        // G & FB
     }
 }
