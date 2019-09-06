@@ -11,6 +11,38 @@ class Profile extends MY_Controller
     }
 
     /**
+     * Profile page
+     */
+    public function index_get() {
+        $user_id = $this->rest->user_id;
+
+        $find_where = [
+            'id' => $user_id,
+        ];
+        $select_fields = [
+            'gender',
+            'fullname',
+            'age',
+            'location_address',
+            'location_lat',
+            'location_long',
+            'google_uid',
+            'facebook_uid',
+        ];
+        $user_details = Users_model::find_user($find_where, $select_fields);
+
+        // Remove unwanted
+        unset($user_details->password);
+        unset($user_details->deleted_at);
+        unset($user_details->is_deleted);
+
+        // Response with 200
+        $this->response([
+            'data' => $user_details,
+        ], 200);
+    }
+
+    /**
      * Link social profile to user account
      */
     public function link_social_put() {
