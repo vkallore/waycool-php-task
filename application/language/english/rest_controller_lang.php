@@ -27,6 +27,9 @@ $lang['text_rest_login_email_failure'] = 'Error occurred while sending login det
 $lang['text_rest_user_created'] = 'Account created successfully';
 $lang['text_rest_user_updated'] = 'Account upated successfully';
 $lang['text_rest_user_deleted'] = 'Account deleted successfully';
+$lang['text_rest_user_deleted'] = 'Account deleted successfully';
+$lang['text_rest_social_linked_already'] = 'Cannot link account! Another account is linked with same social profile.';
+$lang['text_rest_social_linked_success'] = 'Social profile linked successfully.';
 // Auth
 $lang['text_rest_invalid_login'] = 'Invalid login. Please try again.';
 $lang['text_rest_invalid_credentials'] = 'Username/password do not match. Please try again.';

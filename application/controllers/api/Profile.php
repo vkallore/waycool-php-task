@@ -23,18 +23,32 @@ class Profile extends MY_Controller
 
         $user_id = $this->rest->user_id;
 
-        // Update user data
-        $where = ['id' => $user_id];
         $social_site = strtolower($social_site);
-        $data = [
+        $social_data = [
             "{$social_site}_uid" => $social_uid,
         ];
 
-        $user_updated = Users_model::update($where, $data);
+        $find_where = array_merge($social_data, ['is_deleted' => 0]);
+
+        // Check if the social UID is linked to any user
+        $social_linked_user = Users_model::find_user($find_where);
+
+        // Social account linked to another active account already
+        if(!empty($social_linked_user)) {
+            // Response with 400
+            $this->response([
+                'message' => lang('text_rest_social_linked_already'),
+            ], 400);
+        }
+
+        // Update user data
+        $where = ['id' => $user_id];
+
+        $user_updated = Users_model::update($where, $social_data);
 
         if($user_updated !== true) {
             $message = lang('text_rest_error_while');
-            $message = sprintf($message, 'updating account');
+            $message = sprintf($message, 'linking social account');
             // Response with 400
             $this->response([
                 'message' => $message,
@@ -43,7 +57,7 @@ class Profile extends MY_Controller
 
         // Response with 200
         $this->response([
-            'message' => lang('text_rest_user_updated'),
+            'message' => lang('text_rest_social_linked_success'),
         ], 200);
     }
 
