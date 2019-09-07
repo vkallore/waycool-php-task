@@ -18,6 +18,7 @@ class Users_model extends MY_Model {
     public static function find_user(array $where, array $select = []) {
         $default_select = [
             'id',
+            'user_type',
             'email',
             'userid',
             'password',

@@ -31,6 +31,10 @@ class Auth extends MY_Controller
             ], 400);
         }
 
+        // CAN DO
+        // Look for active API key, and send back it
+        // Instead of processing rest
+
         $user_password = $user->password;
 
         if(!password_verify($password, $user_password)) {
@@ -44,14 +48,16 @@ class Auth extends MY_Controller
         // Start transaction
         $this->db->trans_start();
 
-        // Log the login
-        $login_log = Login_logs_model::log($user_id);
-        if($login_log !== true) {
-            $message = lang('text_rest_error_while');
-            $message = sprintf($message, 'login');
-            $this->response([
-                'message' => $message,
-            ], 500);
+        // Log the login when not admin
+        if($user->user_type != 0) {
+            $login_log = Login_logs_model::log($user_id);
+            if($login_log !== true) {
+                $message = lang('text_rest_error_while');
+                $message = sprintf($message, 'login');
+                $this->response([
+                    'message' => $message,
+                ], 500);
+            }
         }
 
         // Create API Key - BASIC
@@ -59,7 +65,7 @@ class Auth extends MY_Controller
         $key_created = Keys_model::create([
             'user_id' => $user_id,
             'key' => $key,
-            'level' => 1,
+            'level' => $user->user_type,
             'ignore_limits' => 0,
         ]);
 

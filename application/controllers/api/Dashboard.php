@@ -14,14 +14,13 @@ class Dashboard extends MY_Controller
         $user_id = $this->rest->user_id;
         $user_level = $this->rest->level;
 
-        // TODO
         // Not an admin user
-        // if($user_level !== 0) {
-        //     // Response with 401
-        //     $this->response([
-        //         'message' => lang('text_rest_dash_invalid_request'),
-        //     ], 401);
-        // }
+        if($user_level != 0) {
+            // Response with 401
+            $this->response([
+                'message' => lang('text_rest_dash_invalid_request'),
+            ], 401);
+        }
     }
 
     /**
