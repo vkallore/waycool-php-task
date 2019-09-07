@@ -12,10 +12,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 // hook for enable/disable profiling
-$hook['post_controller_constructor'][] = array(
-	'class'    => 'ProfilerEnabler',
-	'function' => 'enableProfiler',
-	'filename' => 'hooks.profiler.php',
-	'filepath' => 'hooks',
-	'params'   => array()
-);
+// $hook['post_controller_constructor'][] = array(
+// 	'class'    => 'ProfilerEnabler',
+// 	'function' => 'enableProfiler',
+// 	'filename' => 'hooks.profiler.php',
+// 	'filepath' => 'hooks',
+// 	'params'   => array()
+// );
+
+$hook['pre_system'] = [
+    'class'    => '',
+    'function' => 'overwrite_post_var',
+    'filename' => 'hooks.overwrite_post_var.php',
+    'filepath' => 'hooks',
+    'params'   => [$_POST]
+];

@@ -20,7 +20,7 @@ class Users extends MY_Controller
                 'rules' => 'required|trim|valid_email',
             ],
             [
-                'field' => 'fullname',
+                'field' => 'name',
                 'label' => 'Name',
                 'rules' => 'required',
             ],
@@ -32,7 +32,7 @@ class Users extends MY_Controller
             [
                 'field' => 'gender',
                 'label' => 'Gender',
-                'rules' => 'required|strtolower|in_list[male,female,others]',
+                'rules' => 'required|strtolower|in_list[male,female,other]',
             ],
             [
                 'field' => 'address',
