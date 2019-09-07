@@ -39,3 +39,6 @@ $lang['text_rest_login_success'] = 'Login successfull. You are being redirected.
 // Admin
 $lang['text_rest_dash_invalid_request'] = 'Unauthorized request! Try again.';
 $lang['text_rest_no_records'] = 'No records found.';
+
+$lang['text_rest_maps_latlong_missing'] = 'Latitude & Longitude are missing!';
+$lang['text_rest_maps_failed'] = 'Error occurred while getting address information. Please try again.';

@@ -64,6 +64,8 @@ server {
         fastcgi_param SMTP_PASS 'MY_PASS';
         fastcgi_param SMTP_PORT 587;
         fastcgi_param EMAIL_FROM 'vaishak@kallore.in';
+
+        fastcgi_param GOOGLE_MAPS_API_KEY 'YOUR_GOOGLE_MAPS_KEY';
     }
 
     # deny access to .htaccess files, if Apache's document root

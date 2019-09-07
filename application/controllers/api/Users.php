@@ -138,4 +138,47 @@ class Users extends MY_Controller
             'message' => lang('text_rest_user_created') . $email_sent_message,
         ], 201);
     }
+
+    /**
+     * Get user's geo location from Google Maps API
+     */
+    public function geo_location_get() {
+        $google_maps_api_key = getenv('GOOGLE_MAPS_API_KEY');// 'AIzaSyCVuJds4Xvapt_X90V6RYp1nxEmlYWdeFY';
+
+        $lat = $this->input->get('lat');
+        $long = $this->input->get('long');
+
+        if(empty($lat) || empty($long)) {
+            $this->response([
+                'message' => lang('text_rest_maps_latlong_missing')
+            ], 400);
+        }
+
+        $geo_params = [
+            'latlng' => "{$lat},{$long}",
+            'key' => $google_maps_api_key,
+        ];
+        $maps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?";
+
+        $maps_api_url .= urldecode(http_build_query($geo_params));
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $maps_api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60); // Seconds
+        $content = trim(curl_exec($ch));
+        curl_close($ch);
+        $geo_result = json_decode($content, true);
+
+        if(empty($geo_result) || (!empty($geo_result) && $geo_result['status'] !== 'OK')) {
+            $this->response([
+                'data' => $geo_result,
+                'message' => lang('text_rest_maps_failed')
+            ], 400);
+        }
+
+        $this->response([
+            'data' => $geo_result,
+        ], 200);
+    }
 }

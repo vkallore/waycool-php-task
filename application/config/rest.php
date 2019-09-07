@@ -210,6 +210,8 @@ $config['auth_override_class_method_http']['users']['index']['post'] = 'none';
 $config['auth_override_class_method_http']['auth']['login']['post'] = 'none';
 // social login
 $config['auth_override_class_method_http']['auth']['social_login']['post'] = 'none';
+// Get geo location
+$config['auth_override_class_method_http']['users']['geo_location']['get'] = 'none';
 
 
 /*
