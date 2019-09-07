@@ -20,6 +20,22 @@ class Auth extends MY_Controller
      * Login POST request
      */
     public function login_post() {
+        // Validation
+        $validation_rules = [
+            [
+                'field' => 'username',
+                'label' => 'Username',
+                'rules' => 'required',
+            ],
+            [
+                'field' => 'password',
+                'label' => 'Password',
+                'rules' => 'required',
+            ],
+        ];
+
+        $this->validate_data($validation_rules);
+
         // Post data
         $userid = $this->post('username');
         $password = $this->post('password');
@@ -54,12 +70,26 @@ class Auth extends MY_Controller
      * Allo social login if mapped to an account
      */
     public function social_login_post() {
-        // Put data
-        $social_uid = $this->post('social_uid');
-        $social_site = $this->post('social_site');
 
         // Validation
-        // TODO
+        $validation_rules = [
+            [
+                'field' => 'social_uid',
+                'label' => 'Social profile ID',
+                'rules' => 'required',
+            ],
+            [
+                'field' => 'social_site',
+                'label' => 'Social site',
+                'rules' => 'required',
+            ],
+        ];
+
+        $this->validate_data($validation_rules);
+
+        // Post data
+        $social_uid = $this->post('social_uid');
+        $social_site = $this->post('social_site');
 
         $social_site = strtolower($social_site);
         $social_data = [

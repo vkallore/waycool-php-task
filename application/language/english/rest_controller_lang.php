@@ -18,6 +18,7 @@ $lang['text_rest_unsupported'] = 'Unsupported protocol';
 
 /* Added by Vaishak */
 $lang['text_rest_common_error'] = 'Error occurred! Please try again.';
+$lang['text_rest_fields_missing'] = 'Required fields missing. Please try again.';
 $lang['text_rest_error_while'] = "Error occurred while %1\$s! Please try again.";
 // User
 $lang['text_rest_account_last_active'] = "We found that the account was active during %1\$s - %2\$s. Confirm to re-create the account.";

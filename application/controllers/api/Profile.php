@@ -51,7 +51,12 @@ class Profile extends MY_Controller
         $social_site = $this->put('social_site');
 
         // Validation
-        // TODO
+        if(empty($social_uid) || empty($social_site)) {
+            // 400 Bad Request
+            $this->response([
+                'message' => lang('text_rest_fields_missing'),
+            ], 400);
+        }
 
         $user_id = $this->rest->user_id;
 

@@ -106,4 +106,23 @@ class MY_Controller extends CI_Controller {
 
         $this->response($response, 200);
     }
+
+    /**
+     * Validate request
+     * @param array - Validation rules
+     */
+    public function validate_data($validation_rules) {
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules($validation_rules);
+
+        if ($this->form_validation->run() !== true) {
+            $message = validation_errors();
+            $message = strip_tags($message);
+            // 400 Bad Request
+            $this->response([
+                'message' => $message,
+            ], 400);
+        }
+    }
 }

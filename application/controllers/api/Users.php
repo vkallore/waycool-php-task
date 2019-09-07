@@ -11,6 +11,48 @@ class Users extends MY_Controller
     }
 
     public function index_post() {
+
+        // Validation
+        $validation_rules = [
+            [
+                'field' => 'email',
+                'label' => '',
+                'rules' => 'required|trim|valid_email',
+            ],
+            [
+                'field' => 'fullname',
+                'label' => 'Name',
+                'rules' => 'required',
+            ],
+            [
+                'field' => 'age',
+                'label' => 'Age',
+                'rules' => 'required|greater_than[0]',
+            ],
+            [
+                'field' => 'gender',
+                'label' => 'Gender',
+                'rules' => 'required|strtolower|in_list[male,female,others]',
+            ],
+            [
+                'field' => 'address',
+                'label' => 'Address',
+                'rules' => 'required',
+            ],
+            [
+                'field' => 'latitude',
+                'label' => 'Address latitude',
+                'rules' => 'numeric',
+            ],
+            [
+                'field' => 'longitude',
+                'label' => 'Address longitude',
+                'rules' => 'numeric',
+            ],
+        ];
+
+        $this->validate_data($validation_rules);
+
         // Post data
         $email = $this->post('email');
         $fullname = $this->post('fullname');
@@ -19,9 +61,6 @@ class Users extends MY_Controller
         $location_address = $this->post('address');
         $location_lat = $this->post('latitude');
         $location_long = $this->post('longitude');
-
-        // Validation
-        // TODO
 
         $recreate_confirm = $this->post('recreate_confirm');
 
