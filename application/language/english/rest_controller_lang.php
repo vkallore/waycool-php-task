@@ -32,6 +32,7 @@ $lang['text_rest_social_linked_already'] = 'Cannot link account! Another account
 $lang['text_rest_social_linked_success'] = 'Social profile linked successfully.';
 // Auth
 $lang['text_rest_invalid_login'] = 'Invalid login. Please try again.';
+$lang['text_rest_invalid_social_login'] = 'Social profile is not linked to any account! Login using username & password, and link your profile to account first.';
 $lang['text_rest_invalid_credentials'] = 'Username/password do not match. Please try again.';
 $lang['text_rest_login_success'] = 'Login successfull. You are being redirected...';
 // Admin
