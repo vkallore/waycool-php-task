@@ -5,8 +5,9 @@
 ```
 server {
     ## NO-SSL
-    listen 80;
-    listen [::]:80;
+    # Port for reverse proxy easiness
+    listen 5080;
+    listen [::]:5080;
 
     ## SSL
     # listen 443;
