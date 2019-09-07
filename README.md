@@ -5,12 +5,12 @@
 ```
 server {
     ## NO-SSL
-    listen 80 default_server;
-    listen [::]:80 default_server;
+    listen 80;
+    listen [::]:80;
 
     ## SSL
-    # listen 443 ssl http2 default_server;
-    # listen [::]:443 ssl http2 default_server;
+    # listen 443;
+    # listen [::]:443;
     # include snippets/self-signed.conf;
     # include snippets/ssl-params.conf;
 
@@ -19,7 +19,7 @@ server {
     # Add index.php to the list if you are using PHP
     index index.php;
 
-    server_name waycool.local,waycool.com;
+    server_name waycool.local;
 
     location / {
         # First attempt to serve request as file, then
@@ -138,12 +138,12 @@ Then update the listen section in nginx config file as following.
 
 ```
     ## NO-SSL
-    # listen 80 default_server;
-    # listen [::]:80 default_server;
+    # listen 80;
+    # listen [::]:80;
 
     ## SSL
-    listen 443 ssl http2 default_server;
-    listen [::]:443 ssl http2 default_server;
+    listen 443;
+    listen [::]:443;
     include snippets/self-signed.conf;
     include snippets/ssl-params.conf;
 ```
