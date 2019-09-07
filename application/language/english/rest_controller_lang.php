@@ -23,12 +23,12 @@ $lang['text_rest_error_while'] = "Error occurred while %1\$s! Please try again."
 // User
 $lang['text_rest_account_last_active'] = "We found that the account was active during %1\$s - %2\$s. Confirm to re-create the account.";
 $lang['text_rest_account_exists'] = 'An account with same email exists! Please try another.';
-$lang['text_rest_login_email_success'] = 'Login details have been sent your email';
-$lang['text_rest_login_email_failure'] = 'Error occurred while sending login details';
-$lang['text_rest_user_created'] = 'Account created successfully';
-$lang['text_rest_user_updated'] = 'Account upated successfully';
-$lang['text_rest_user_deleted'] = 'Account deleted successfully';
-$lang['text_rest_user_deleted'] = 'Account deleted successfully';
+$lang['text_rest_login_email_success'] = 'Login details have been sent your email.';
+$lang['text_rest_login_email_failure'] = 'Error occurred while sending login details.';
+$lang['text_rest_user_created'] = 'Account created successfully.';
+$lang['text_rest_user_updated'] = 'Account upated successfully.';
+$lang['text_rest_user_deleted'] = 'Account deleted successfully.';
+$lang['text_rest_user_deleted'] = 'Account deleted successfully.';
 $lang['text_rest_social_linked_already'] = 'Cannot link account! Another account is linked with same social profile.';
 $lang['text_rest_social_linked_success'] = 'Social profile linked successfully.';
 // Auth

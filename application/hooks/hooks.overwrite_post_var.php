@@ -4,8 +4,6 @@
  */
 function overwrite_post_var ($post = array())
 {
-    if (empty($post)) return;
-
     if($_SERVER['REQUEST_METHOD'] === 'POST' && empty($post)) {
         $enc_post = json_decode(file_get_contents('php://input'), TRUE);
         $_POST = $enc_post;

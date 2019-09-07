@@ -25,5 +25,5 @@ $hook['pre_system'] = [
     'function' => 'overwrite_post_var',
     'filename' => 'hooks.overwrite_post_var.php',
     'filepath' => 'hooks',
-    'params'   => [$_POST]
+    'params'   => $_POST,
 ];
