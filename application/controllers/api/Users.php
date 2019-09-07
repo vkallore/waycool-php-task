@@ -27,7 +27,7 @@ class Users extends MY_Controller
             [
                 'field' => 'age',
                 'label' => 'Age',
-                'rules' => 'required|greater_than[0]',
+                'rules' => 'required|greater_than[0]|less_than[120]',
             ],
             [
                 'field' => 'gender',
@@ -135,7 +135,7 @@ class Users extends MY_Controller
                                 : lang('text_rest_login_email_failure');
         // Response with 201
         $this->response([
-            'message' => lang('text_rest_user_created') . $email_sent_message,
+            'message' => lang('text_rest_user_created') . " {$email_sent_message}",
         ], 201);
     }
 
