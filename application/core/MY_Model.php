@@ -83,4 +83,15 @@ class MY_Model extends CI_Model {
         }
         return false;
     }
+
+    /**
+     * Set the offset & limit
+     */
+    protected static function set_offset_limit() {
+        $offset = self::$CI->config->item('offset');
+        $per_page = self::$CI->config->item('per_page');
+        $limit = $offset + $per_page;
+        self::$CI->db->offset($offset)
+                     ->limit($limit);
+    }
 }

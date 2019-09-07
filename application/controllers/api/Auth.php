@@ -7,11 +7,14 @@ require APPPATH . 'libraries/Format.php';
 class Auth extends MY_Controller
 {
 
-    private static $user = null;
-
     use REST_Controller {
         REST_Controller::__construct as private __resTraitConstruct;
     }
+
+    /**
+     * User object
+     */
+    private static $user = null;
 
     /**
      * Login POST request

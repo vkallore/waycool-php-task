@@ -34,6 +34,7 @@ class Login_logs_model extends MY_Model {
      * @return array of objects
      */
     public static function login_logs_by_type() {
+        parent::set_offset_limit();
         // SELECT user_id, usr.email,  login_type, COUNT(login_type) as login_type_count,
         //   SUM(CASE WHEN login_type = 'Email' THEN 1 ELSE 0 END) AS email,
         //   SUM(CASE WHEN login_type = 'FB' THEN 1 ELSE 0 END) AS facebook,
@@ -63,6 +64,7 @@ class Login_logs_model extends MY_Model {
      * @return array of objects
      */
     public static function login_logs() {
+        parent::set_offset_limit();
         $query = self::$CI->db->select([
                                 'user_id',
                                 'email AS email_id',

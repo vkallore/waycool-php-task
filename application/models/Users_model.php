@@ -65,6 +65,7 @@ class Users_model extends MY_Model {
      * @return array of objects
      */
     public static function deleted_accounts() {
+        parent::set_offset_limit();
         self::$CI->db->select([
                 'userid',
                 'email',

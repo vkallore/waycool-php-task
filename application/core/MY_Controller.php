@@ -66,4 +66,24 @@ class MY_Controller extends CI_Controller {
 
         return $this->email->send();
     }
+
+    /**
+     * Check request and set the pagination offset and per page data
+     */
+    public function check_and_set_pagination_data() {
+        // Load pagination
+        $this->config->load('pagination', TRUE);
+
+        $offset = (int)$this->get('offset');
+        $per_page = (int)$this->get('per_page');
+
+        $config_offset = $this->config->item('pagination')['offset'];
+        $config_per_page = $this->config->item('pagination')['per_page'];
+
+        $new_offset = ($offset < 0 || $offset === null) ? $config_offset : $offset;
+        $new_per_page = ($per_page <= 0 || $per_page === null) ? $config_per_page : $per_page;
+
+        $this->config->set_item('offset', $new_offset);
+        $this->config->set_item('per_page', $new_per_page);
+    }
 }
