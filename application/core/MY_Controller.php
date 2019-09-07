@@ -77,13 +77,33 @@ class MY_Controller extends CI_Controller {
         $offset = (int)$this->get('offset');
         $per_page = (int)$this->get('per_page');
 
-        $config_offset = $this->config->item('pagination')['offset'];
-        $config_per_page = $this->config->item('pagination')['per_page'];
+        $config_offset = config_item('pagination')['offset'];
+        $config_per_page = config_item('pagination')['per_page'];
 
         $new_offset = ($offset < 0 || $offset === null) ? $config_offset : $offset;
         $new_per_page = ($per_page <= 0 || $per_page === null) ? $config_per_page : $per_page;
 
         $this->config->set_item('offset', $new_offset);
         $this->config->set_item('per_page', $new_per_page);
+    }
+
+    /**
+     * Return rest API with meta info
+     * @param array $data - Array of objects
+     */
+    public function api_meta_response($data) {
+        if(empty($data)) {
+            $response['message'] = lang('text_rest_no_records');
+        }
+        $response = [
+            'data' => $data,
+            '_meta' => [
+                'total_results' => config_item('pagination')['total_results'],
+                'per_page' => config_item('pagination')['per_page'],
+                'offset' => config_item('pagination')['offset'],
+            ]
+        ];
+
+        $this->response($response, 200);
     }
 }

@@ -65,8 +65,9 @@ class Users_model extends MY_Model {
      * @return array of objects
      */
     public static function deleted_accounts() {
-        parent::set_offset_limit();
+        self::$CI->db->start_cache();
         self::$CI->db->select([
+                'id',
                 'userid',
                 'email',
                 'fullname',
@@ -75,6 +76,9 @@ class Users_model extends MY_Model {
             ])
             ->from(self::$table_name)
             ->where('is_deleted', 1);
+
+        parent::set_offset_limit();
+
         $query = self::$CI->db->get();
         $result = $query->result_object();
         return $result;

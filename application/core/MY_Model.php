@@ -88,10 +88,25 @@ class MY_Model extends CI_Model {
      * Set the offset & limit
      */
     protected static function set_offset_limit() {
-        $offset = self::$CI->config->item('offset');
-        $per_page = self::$CI->config->item('per_page');
+        // Stop the cache
+        self::$CI->db->stop_cache();
+
+        self::find_and_set_total_results();
+
+        $offset = config_item('offset');
+        $per_page = config_item('per_page');
         $limit = $offset + $per_page;
         self::$CI->db->offset($offset)
                      ->limit($limit);
+    }
+
+    /**
+     * Set total result of last query & update pagination
+     */
+    protected static function find_and_set_total_results() {
+        $pagination = config_item('pagination');
+
+        $pagination['total_results'] = @self::$CI->db->get()->num_rows();
+        self::$CI->config->set_item('pagination', $pagination);
     }
 }

@@ -37,13 +37,7 @@ class Dashboard extends MY_Controller
 
         $login_logs_by_type = Login_logs_model::login_logs_by_type();
 
-        $response = [
-            'data' => $login_logs_by_type
-        ];
-        if(empty($login_logs_by_type)) {
-            $response['message'] = lang('text_rest_no_records');
-        }
-        $this->response($response, 200);
+        $this->api_meta_response($login_logs_by_type);
     }
 
     /**
@@ -56,13 +50,7 @@ class Dashboard extends MY_Controller
 
         $deleted_accounts = Users_model::deleted_accounts();
 
-        $response = [
-            'data' => $deleted_accounts
-        ];
-        if(empty($deleted_accounts)) {
-            $response['message'] = lang('text_rest_no_records');
-        }
-        $this->response($response, 200);
+        $this->api_meta_response($deleted_accounts);
     }
 
     /**
@@ -76,12 +64,6 @@ class Dashboard extends MY_Controller
 
         $login_logs = Login_logs_model::login_logs();
 
-        $response = [
-            'data' => $login_logs
-        ];
-        if(empty($login_logs)) {
-            $response['message'] = lang('text_rest_no_records');
-        }
-        $this->response($response, 200);
+        $this->api_meta_response($login_logs);
     }
 }

@@ -34,7 +34,7 @@ class Login_logs_model extends MY_Model {
      * @return array of objects
      */
     public static function login_logs_by_type() {
-        parent::set_offset_limit();
+        self::$CI->db->start_cache();
         // SELECT user_id, usr.email,  login_type, COUNT(login_type) as login_type_count,
         //   SUM(CASE WHEN login_type = 'Email' THEN 1 ELSE 0 END) AS email,
         //   SUM(CASE WHEN login_type = 'FB' THEN 1 ELSE 0 END) AS facebook,
@@ -42,20 +42,24 @@ class Login_logs_model extends MY_Model {
         // FROM `login_logs` AS logs
         // INNER JOIN `users` AS usr ON usr.id = logs.user_id AND usr.is_deleted = 0
         // GROUP BY user_id
-        $query = self::$CI->db->select([
-                                'user_id',
-                                'email AS email_id',
-                                'fullname',
-                                "SUM(CASE WHEN login_type = 'Email' THEN 1 ELSE 0 END) AS email",
-                                "SUM(CASE WHEN login_type = 'FB' THEN 1 ELSE 0 END) AS facebook",
-                                "SUM(CASE WHEN login_type = 'G' THEN 1 ELSE 0 END) AS google"
-                            ])
-                            ->from(self::$table_name . ' logs')
-                            ->join(Users_model::$table_name . ' usr ' , 'usr.id = logs.user_id AND usr.is_deleted = 0')
-                            ->group_by([
-                                'user_id'
-                            ])
-                            ->get();
+        self::$CI->db->select([
+                        'logs.id',
+                        'user_id',
+                        'email AS email_id',
+                        'fullname',
+                        "SUM(CASE WHEN login_type = 'Email' THEN 1 ELSE 0 END) AS email",
+                        "SUM(CASE WHEN login_type = 'FB' THEN 1 ELSE 0 END) AS facebook",
+                        "SUM(CASE WHEN login_type = 'G' THEN 1 ELSE 0 END) AS google"
+                    ])
+                    ->from(self::$table_name . ' logs')
+                    ->join(Users_model::$table_name . ' usr ' , 'usr.id = logs.user_id AND usr.is_deleted = 0')
+                    ->group_by([
+                        'user_id'
+                    ]);
+
+        parent::set_offset_limit();
+
+        $query = self::$CI->db->get();
         return $query->result_object();
     }
 
@@ -64,17 +68,22 @@ class Login_logs_model extends MY_Model {
      * @return array of objects
      */
     public static function login_logs() {
+        self::$CI->db->start_cache();
+        self::$CI->db->select([
+                        'logs.id',
+                        'user_id',
+                        'email AS email_id',
+                        'fullname',
+                        'login_type',
+                        'logs.created_at',
+                    ])
+                    ->from(self::$table_name . ' logs')
+                    ->join(Users_model::$table_name . ' usr ' , 'usr.id = logs.user_id AND usr.is_deleted = 0');
+
         parent::set_offset_limit();
-        $query = self::$CI->db->select([
-                                'user_id',
-                                'email AS email_id',
-                                'fullname',
-                                'login_type',
-                                'logs.created_at',
-                            ])
-                            ->from(self::$table_name . ' logs')
-                            ->join(Users_model::$table_name . ' usr ' , 'usr.id = logs.user_id AND usr.is_deleted = 0')
-                            ->get();
+
+        $query = self::$CI->db->get();
+
         return $query->result_object();
     }
 }
