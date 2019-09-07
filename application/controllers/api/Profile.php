@@ -21,9 +21,9 @@ class Profile extends MY_Controller
         ];
         $select_fields = [
             'gender',
-            'fullname',
+            'fullname AS name',
             'age',
-            'location_address',
+            'location_address AS address',
             'location_lat',
             'location_long',
             'google_uid',
