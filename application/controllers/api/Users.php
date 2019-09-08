@@ -55,7 +55,7 @@ class Users extends MY_Controller
 
         // Post data
         $email = $this->post('email');
-        $fullname = $this->post('email');
+        $fullname = $this->post('name');
         $user_age = $this->post('age');
         $gender = $this->post('gender');
         $location_address = $this->post('address');

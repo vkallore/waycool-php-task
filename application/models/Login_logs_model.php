@@ -44,7 +44,7 @@ class Login_logs_model extends MY_Model {
         // GROUP BY user_id
         self::$CI->db->select([
                         'logs.id',
-                        'user_id',
+                        'userid AS user_id',
                         'email AS email_id',
                         'fullname',
                         'usr.created_at',
@@ -72,7 +72,7 @@ class Login_logs_model extends MY_Model {
         self::$CI->db->start_cache();
         self::$CI->db->select([
                         'logs.id',
-                        'user_id',
+                        'userid AS user_id',
                         'email AS email_id',
                         'fullname',
                         'login_type',

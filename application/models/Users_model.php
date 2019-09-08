@@ -68,8 +68,8 @@ class Users_model extends MY_Model {
         self::$CI->db->start_cache();
         self::$CI->db->select([
                 'id',
-                'userid',
-                'email',
+                'userid AS user_id',
+                'email AS email_id',
                 'fullname',
                 'created_at',
                 'deleted_at',
