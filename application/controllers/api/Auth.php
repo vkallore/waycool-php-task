@@ -109,14 +109,14 @@ class Auth extends MY_Controller
 
         self::$user = $user;
 
-        self::_login();
+        self::_login($social_site);
     }
 
     /**
      * Process login process
      * common to all types of login
      */
-    private function _login() {
+    private function _login($login_type = 'Email') {
         $user = self::$user;
 
         $user_id = $user->id;
@@ -131,7 +131,7 @@ class Auth extends MY_Controller
         $user_type = $user->user_type;
         // Log the login when not admin
         if($user_type != 0) {
-            $login_log = Login_logs_model::log($user_id);
+            $login_log = Login_logs_model::log($user_id, $login_type);
             if($login_log !== true) {
                 $message = lang('text_rest_error_while');
                 $message = sprintf($message, 'login');
