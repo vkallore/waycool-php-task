@@ -3,12 +3,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Class Migration_alter_table_users
+ * Class Migration_alter_table_users_social_ids
  *
  * @property CI_DB_forge         $dbforge
  * @property CI_DB_query_builder $db
  */
-class Migration_alter_table_users extends CI_Migration {
+class Migration_alter_table_users_social_ids extends CI_Migration {
 
 
     protected $table = 'users';
