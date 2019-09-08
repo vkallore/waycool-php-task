@@ -94,6 +94,9 @@ class Profile extends MY_Controller
 
         // Response with 200
         $this->response([
+            'data' => [
+                "{$social_site}_uid" => $social_uid,
+            ],
             'message' => lang('text_rest_social_linked_success'),
         ], 200);
     }
