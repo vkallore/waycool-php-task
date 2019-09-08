@@ -139,7 +139,7 @@ class Auth extends MY_Controller
                     'message' => $message,
                 ], 500);
             }
-        } else {
+        } else if($user_type == null) {
             $user_type = 1;
         }
 
@@ -163,10 +163,11 @@ class Auth extends MY_Controller
         // End transaction
         $this->db->trans_complete();
 
-        if( $this->db->trans_status() !== false ){
+        if( $this->db->trans_status() !== false ) {
             // Response with 200
             $this->response([
                 'api_key' => $key,
+                'is_admin' => $user_type == 0,
                 'message' => lang('text_rest_login_success'),
             ], 200);
         } else {
