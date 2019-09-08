@@ -95,9 +95,10 @@ class MY_Model extends CI_Model {
 
         $offset = config_item('offset');
         $per_page = config_item('per_page');
+
         $limit = $offset + $per_page;
         self::$CI->db->offset($offset)
-                     ->limit($limit);
+                     ->limit($per_page);
     }
 
     /**

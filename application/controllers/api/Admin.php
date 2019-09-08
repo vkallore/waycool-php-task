@@ -4,7 +4,7 @@ use Restserver\Libraries\REST_Controller;
 require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
-class Dashboard extends MY_Controller
+class Admin extends MY_Controller
 {
     use REST_Controller {
         REST_Controller::__construct as private __resTraitConstruct;

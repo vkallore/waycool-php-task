@@ -47,6 +47,7 @@ class Login_logs_model extends MY_Model {
                         'user_id',
                         'email AS email_id',
                         'fullname',
+                        'usr.created_at',
                         "SUM(CASE WHEN login_type = 'Email' THEN 1 ELSE 0 END) AS email",
                         "SUM(CASE WHEN login_type = 'FB' THEN 1 ELSE 0 END) AS facebook",
                         "SUM(CASE WHEN login_type = 'G' THEN 1 ELSE 0 END) AS google"
