@@ -1,0 +1,22 @@
+version: '2'
+services:
+
+  # Application container
+  php:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ./:/server/http
+    ports:
+      - "8080:80"
+      #- "443:443"
+    depends_on:
+      - mariadb
+    environment:
+        DEBUG: 'true'
+
+  mariadb:
+    image: 'bitnami/mariadb:10.3'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
